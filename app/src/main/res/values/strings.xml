@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">audiomix</string>
+    <string name="Recording">Recording</string>
+    <string name="Stop">Stop</string>
+    <string name="Play">Play</string>
+    <string name="Sub">Sub</string>
+    <string name="Mix">Mix</string>
+    <string name="NeedRecord">need record audio permisson</string>
+    <string name="NeedRW">need read write permisson</string>
+</resources>
