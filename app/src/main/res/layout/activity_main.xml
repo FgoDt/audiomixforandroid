@@ -69,6 +69,8 @@
         android:id="@+id/sub"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:onClick="onClick"
         android:text="@string/Sub"
@@ -89,29 +91,40 @@
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="231dp"
-        android:layout_height="142dp"
-        android:visibility="invisible"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_height="130dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sub" />
+        app:layout_constraintTop_toBottomOf="@+id/playMix" />
 
     <Button
         android:id="@+id/mix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:layout_marginTop="24dp"
         android:onClick="onClick"
         android:text="@string/Mix"
-        app:layout_constraintEnd_toEndOf="@+id/playSub"
+        app:layout_constraintEnd_toEndOf="@+id/sub"
         app:layout_constraintStart_toStartOf="@+id/sub"
         app:layout_constraintTop_toBottomOf="@+id/sub" />
+
+    <Button
+        android:id="@+id/playMix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/Play"
+        android:onClick="onClick"
+        app:layout_constraintEnd_toEndOf="@+id/playSub"
+        app:layout_constraintStart_toStartOf="@+id/playSub"
+        app:layout_constraintTop_toBottomOf="@+id/playSub" />
 
 
 </android.support.constraint.ConstraintLayout>

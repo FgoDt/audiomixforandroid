@@ -44,6 +44,36 @@ public class MainActivity extends AppCompatActivity {
      */
     public native String stringFromJNI();
 
+
+
+    /**
+     * mix two media file to one aac file,
+     * output aac file will be sample_rate = 48000
+     *                         channels = 1
+     *
+     * @param file1 first media file path
+     * @param file1StartTime first media file mix start time,
+     *        1 for 1 millisecond.
+     * @param file2Duration first media file mix duration,
+     *        1 for 1 millisecond
+     *        If f1duration = -1 will mix all first file
+     * @param file2 Second media file path
+     * @param file2StartTime  second media file mix start time,
+     *        1 for 1 millisecond
+     * @param file2Duration second media file mix duration,
+     *        1 for 1 millisecond,
+     *        If f2duration = -1 will mix all second file
+     * @param mixpath mix file output path
+     * @param totalDuation mix file duration,
+     *        1 for 1 millisecond
+     *        If totalDuration = -1
+     *          totalduration = (f1stime+f1duration)>(f2stime+f2duration)?
+     *                        (f1stime+f1duration):(f2stime+f2duration)
+     *        end if
+     *
+     * @return true for success
+     */
+
     public native boolean mixAudio(String file1,long file1StartTime, long file1Duration,
                                    String file2,long file2StartTime, long file2Duration,
                                    String mixpath,long totalDuation);
@@ -82,6 +112,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.mix:
                 mix("a.aac","b.aac");
+                break;
+            case R.id.playMix:
+                play("mix.aac");
                 break;
             default:
                 break;
@@ -219,7 +252,10 @@ public class MainActivity extends AppCompatActivity {
         mixurl = fileA.getAbsolutePath();
 
 
-        mixAudio(urla,0,-1,urlb ,0,-1,mixurl,-1);
+        boolean ret =  mixAudio(urla,0,-1,urlb ,0,-1,mixurl,10*1000);
+        if(ret){
+           Toast.makeText(this,"MIX DONE",Toast.LENGTH_SHORT).show() ;
+        }
     }
 
     private  void sub(String urlA,String urlB){
