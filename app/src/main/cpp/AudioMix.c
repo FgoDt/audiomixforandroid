@@ -306,6 +306,7 @@ int mix_decoder_open(MixCodec *codec,char* path){
     codecnum++;
 
     codec->fmt = avformat_alloc_context();
+    av_register_all();
     int ret = avformat_open_input(&codec->fmt,path,NULL,NULL);
     if(ret<0){
         mix_audio_log("can not open file:%s\n",path);
@@ -414,6 +415,7 @@ int mix_encoder_open(MixCodec *ctx){
 
 int do_mix(MixContext *mixCtx){
     int ret = 0;
+    FILE *outputfile = NULL;
     if(mixCtx == NULL ||
        mixCtx->file1 == NULL ||
        mixCtx->file2 == NULL ||
@@ -487,7 +489,6 @@ int do_mix(MixContext *mixCtx){
     long mixPos  = 0;
     long file1MixDuration = 0;
     long file2MixDuration = 0;
-    FILE *outputfile = NULL;
     outputfile = fopen(mixCtx->mixfile,"wb");
     if(outputfile == NULL){
         mix_audio_log("can not open mix file \n");
