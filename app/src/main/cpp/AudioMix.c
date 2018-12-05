@@ -520,7 +520,7 @@ int do_mix(MixContext *mixCtx){
                     int hlen = mixCtx->file1Codec->nb_swr_sample - mixCtx->file1Codec->rwpos;
                     // mixpo/2 one sample 2byte for s16
                     // next about 2 also
-                    int len = hlen > mixFrame->nb_samples ? mixFrame->nb_samples-mixPos/2:hlen;
+                    int len = hlen + mixPos/2 > mixFrame->nb_samples ? mixFrame->nb_samples-mixPos/2:hlen;
 
                     // len nb of samples
                     // len*2 total bytes
@@ -568,7 +568,7 @@ int do_mix(MixContext *mixCtx){
                     unsigned  char *mixbuf = mixCtx->mixCodec->sAudioBuf;
 
                     int hlen = mixCtx->file2Codec->nb_swr_sample-mixCtx->file2Codec->rwpos;
-                    int len = hlen>mixFrame->nb_samples?mixFrame->nb_samples-mixPos/2:hlen;
+                    int len = hlen + mixPos/2 >mixFrame->nb_samples?mixFrame->nb_samples-mixPos/2:hlen;
                     //s16 2bytes
                     for (int i = 0; i < len*2; i+=2) {
                         uint8_t tmp[2] = {0};
